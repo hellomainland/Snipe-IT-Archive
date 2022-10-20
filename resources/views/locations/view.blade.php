@@ -49,7 +49,7 @@
                         <i class="fas fa-barcode fa-2x" aria-hidden="true"></i>
                     </span>
                       <span class="hidden-xs hidden-sm">
-                          Default
+                         {{ trans('admin/hardware/form.default_location') }}
                           {!! (($location->rtd_assets) && ($location->rtd_assets()->AssetsForShow()->count() > 0 )) ? '<badge class="badge badge-secondary">'.number_format($location->rtd_assets()->AssetsForShow()->count()).'</badge>' : '' !!}
                     </span>
                   </a>
@@ -163,7 +163,7 @@
                   <h2 class="box-title">{{ trans('general.assets') }}</h2>
 
                   <div class="table table-responsive">
-                      @include('partials.asset-bulk-actions')
+                      @include('partials.asset-bulk-actions', ['id_divname' => 'RTDassetsBulkEditToolbar', 'id_formname' => 'RTDassets', 'id_button' => 'RTDbulkAssetEditButton'])
                       <table
                               data-columns="{{ \App\Presenters\AssetPresenter::dataTableLayout() }}"
                               data-cookie-id-table="RTDassetsListingTable"
@@ -176,8 +176,8 @@
                               data-show-refresh="true"
                               data-sort-order="asc"
                               data-toolbar="#RTDassetsBulkEditToolbar"
-                              data-bulk-button-id="#bulkAssetEditButton"
-                              data-bulk-form-id="#RTDassetsBulkForm"
+                              data-bulk-button-id="#RTDbulkAssetEditButton"
+                              data-bulk-form-id="#RTDassetsBulkEditToolbar"
                               data-click-to-select="true"
                               id="RTDassetsListingTable"
                               class="table table-striped snipe-table"

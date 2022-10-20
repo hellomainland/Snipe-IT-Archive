@@ -118,6 +118,7 @@
         var buttonName =  $(this).data('bulk-button-id');
         var formName =  $(this).data('bulk-form-id');
         var tableId =  $(this).data('id-table');
+        console.log('check single button name' + buttonName);
 
         $(buttonName).removeAttr('disabled');
         $(formName).prepend('<input id="' + tableId + '_checkbox_' + $element.id + '" type="hidden" name="ids[]" value="' + $element.id + '">');
@@ -125,13 +126,16 @@
 
     $('.snipe-table').on('uncheck.bs.table .btSelectItem', function (row, $element) {
         var tableId =  $(this).data('id-table');
+        console.log('uncheck single table name' + tableId);
         $( "#" + tableId + "_checkbox_" + $element.id).remove();
     });
 
 
-    $('.snipe-table').on('check-all.bs.table', function (event, rowsAfter, rowsBefore) {
+    $('.snipe-table').on('check-all.bs.table', function (event, rowsAfter) {
 
         var buttonName =  $(this).data('bulk-button-id');
+        console.log('check ALL button name' + buttonName);
+
         $(buttonName).removeAttr('disabled');
         var formName =  $(this).data('bulk-form-id');
         var tableId =  $(this).data('id-table');
@@ -146,17 +150,22 @@
     $('.snipe-table').on('uncheck.bs.table', function () {
 
         var buttonName =  $(this).data('bulk-button-id');
+        console.log('uncheck single button name' + buttonName);
 
         if ($(this).bootstrapTable('getSelections').length == 0) {
             $(buttonName).attr('disabled', 'disabled');
+
         }
     });
 
     $('.snipe-table').on('uncheck-all.bs.table', function (event, rowsAfter, rowsBefore) {
 
         var buttonName =  $(this).data('bulk-button-id');
+        console.log(buttonName);
+
         $(buttonName).attr('disabled', 'disabled');
         var tableId =  $(this).data('id-table');
+        console.log('Table ID is:' + tableId);
 
         for (var i in rowsBefore) {
             $('#' + tableId + "_checkbox_" + rowsBefore[i].id).remove();
