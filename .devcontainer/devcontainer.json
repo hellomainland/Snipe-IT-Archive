@@ -1,16 +1,17 @@
 {
-    "name": "Laravel",
+    "name": "Snipe-it",
     "service": "cli",
     "remoteUser": "user",
     "shutdownAction": "stopCompose",
-    "workspaceFolder": "/workspaces/laravel",
+    "workspaceFolder": "/workspaces/snipe-it",
     "dockerComposeFile": "docker-compose.yaml",
-
+    "forwardPorts": [80],
     "extensions": [
         "bmewburn.vscode-intelephense-client",
         "eamodio.gitlens",
         "EditorConfig.EditorConfig",
         "mikestead.dotenv",
         "onecentlin.laravel-blade"
-    ]
+    ],
+    "postCreateCommand": "bash /workspaces/snipe-it/.devcontainer/bash/startup.sh"
 }
