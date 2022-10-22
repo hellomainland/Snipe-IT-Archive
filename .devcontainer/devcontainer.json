@@ -1,0 +1,19 @@
+{
+    "image": "mcr.microsoft.com/vscode/devcontainers/php:dev-7.4",
+    "forwardPorts": [
+        8000
+    ],
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "eamodio.gitlens",
+                "EditorConfig.EditorConfig",
+                "mikestead.dotenv",
+                "onecentlin.laravel-blade"
+            ]
+        }
+    }
+}
