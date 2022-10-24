@@ -7,7 +7,7 @@ services:
     env_file:
     - .env.docker
 
-    
+
   fpm:
     build: fpm
     volumes:
@@ -21,7 +21,7 @@ services:
     volumes:
       - ..:/workspaces/snipe-it
     ports:
-      - 8000:80
+      - 8000:8000
     depends_on:
       - fpm
     env_file:
@@ -30,7 +30,7 @@ services:
   mariadb:
     image: mariadb:10.6.4-focal
     volumes:
-    - db:/var/lib/mysql
+    - ./.db:/var/lib/mysql
     env_file:
     - .env.docker
     ports:
@@ -38,6 +38,3 @@ services:
 
   redis:
     image: redis:6.2-alpine
-
-volumes:
-  db: {}

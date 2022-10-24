@@ -21,13 +21,14 @@ restore_database() {
 : ${DB_PORT="3306"}
 : ${OUTPUT="/workspaces/snipe-it/.gp/data/dump.sql"}
 mysqluserpw="$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16; echo)"
+wait-port $DB_HOST:$DB_PORT
 mysql -u root -h$DB_HOST -p$MYSQL_ROOT_PASSWORD -P$DB_PORT -e  "CREATE DATABASE IF NOT EXISTS snipeit;GRANT ALL PRIVILEGES ON snipeit.* TO 'snipeit'@'mariadb'; FLUSH PRIVILEGES;"
 if [[ ! $(mysql -u root -h$DB_HOST -p$MYSQL_ROOT_PASSWORD -P$DB_PORT -e "SELECT 1 FROM users LIMIT 1;" snipeit) ]]; then
     echo "RESTORING"
     restore_database "snipeit" $DB_PASSWORD "$DB_HOST" "$DB_PORT" "snipeit" $OUTPUT
 fi
-cp -f .env.docker.example .env
-sed -i "s|^\\(DB_PASSWORD=\\).*|\\1'${DB_PASSWORD}'|" .env
-composer install 
+cp -f /workspaces/snipe-it/.devcontainer/.env.docker .env
+# sed -i "s|^\\(DB_PASSWORD=\\).*|\\1'${DB_PASSWORD}'|" .env
+composer install
 php artisan migrate --force
 php artisan key:generate

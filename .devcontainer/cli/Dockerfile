@@ -33,14 +33,15 @@ php7-dom \
 php7-xmlwriter \
 php7-xmlreader \
 php7-sodium \
-php7-redis  
+php7-redis \
+npm
 
 # RUN docker-php-ext-install ext-fileinfo ext-pdo ext-simplexml ext-tokenizer ext-dom ext-sodium ext-bcmath
 
 # Install redis driver.
 RUN mkdir -p /usr/src/php/ext/redis; \
     curl -fsSL --ipv4 https://github.com/phpredis/phpredis/archive/5.3.4.tar.gz | tar xvz -C "/usr/src/php/ext/redis" --strip 1; \
-    docker-php-ext-install redis 
+    docker-php-ext-install redis
 
 RUN set -eux; \
 	docker-php-ext-enable opcache; \
@@ -80,6 +81,7 @@ RUN set -eux; \
     rm -f /usr/local/bin/install-php-extensions; \
     # Install prerequisites packages
     apk add --no-cache \
-        mysql-client    
+        mysql-client
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN npm install -g wait-port
 CMD ["sleep", "infinity"]
