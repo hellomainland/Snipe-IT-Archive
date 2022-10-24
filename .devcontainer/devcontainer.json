@@ -5,7 +5,8 @@
     "shutdownAction": "stopCompose",
     "workspaceFolder": "/workspaces/snipe-it",
     "dockerComposeFile": "docker-compose.yaml",
-    "forwardPorts": [8000],
+    "forwardPorts": [8000, 3306],
+
     "extensions": [
         "bmewburn.vscode-intelephense-client",
         "eamodio.gitlens",
@@ -13,5 +14,5 @@
         "mikestead.dotenv",
         "onecentlin.laravel-blade"
     ],
-    "postCreateCommand": "bash /workspaces/snipe-it/.devcontainer/bash/startup.sh"
+    "postStartCommand": "bash /workspaces/snipe-it/.devcontainer/bash/startup.sh"
 }
