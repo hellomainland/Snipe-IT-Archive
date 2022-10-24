@@ -1,4 +1,6 @@
-FROM mariadb:10.6.4-focal
+FROM mariadb:lastest
 
 COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./50-server.cnf /etc/mysql/my.cnf
+
+EXPOSE 3306
