@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   cli:
+    container_name: cli
     image: modamod/php7.4-cli
     volumes:
       - ..:/workspaces/snipe-it
@@ -9,6 +10,7 @@ services:
 
 
   fpm:
+    container_name: fpm
     image: modamod/php7.4-fpm
     volumes:
       - ..:/workspaces/snipe-it
@@ -17,6 +19,7 @@ services:
     - .env.docker
 
   nginx:
+    container_name: nginx
     build: nginx
     volumes:
       - ..:/workspaces/snipe-it
@@ -28,6 +31,7 @@ services:
     - .env.docker
 
   mariadb:
+    container_name: mariadb
     build: mariadb
     volumes:
     - ./.db:/var/lib/mysql
@@ -37,4 +41,5 @@ services:
       - "3306:3306"
 
   redis:
+    container_name: redis
     image: redis:6.2-alpine
