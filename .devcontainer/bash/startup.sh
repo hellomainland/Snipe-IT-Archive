@@ -17,7 +17,7 @@ restore_database() {
 }
 
 
-: ${DB_HOST="mariabdb.codespaces"}
+: ${DB_HOST="mariabdb"}
 : ${DB_PORT="3306"}
 : ${OUTPUT="/workspaces/snipe-it/.gp/data/dump.sql"}
 mysqluserpw="$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16; echo)"

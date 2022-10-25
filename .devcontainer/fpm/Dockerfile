@@ -76,3 +76,4 @@ RUN set -eux; \
         mysql-client
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+EXPOSE 9000
