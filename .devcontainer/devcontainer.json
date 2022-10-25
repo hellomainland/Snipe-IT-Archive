@@ -17,5 +17,5 @@
         "vscode-icons-team.vscode-icons",
         "visualstudioexptteam.vscodeintellicode"
     ],
-    "postStartCommand": "bash /workspaces/snipe-it/.devcontainer/bash/startup.sh"
+    "postStartCommand": "sh /workspaces/snipe-it/.devcontainer/bash/startup.sh"
 }

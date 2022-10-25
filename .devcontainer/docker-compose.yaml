@@ -37,15 +37,15 @@ services:
       - fpm
     env_file:
     - .env.docker
+    ports:
+      - "8000:8000"
 
 
   mariadb:
     container_name: mariadb
     networks:
       - codespaces
-    build: mariadb
-    volumes:
-    - db:/var/lib/mysql
+    image: mariadb:latest
     env_file:
     - .env.docker
     ports:
@@ -58,7 +58,5 @@ services:
     image: redis:6.2-alpine
 
 
-volumes:
-  db: {}
 networks:
   codespaces: {}
