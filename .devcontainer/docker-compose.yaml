@@ -23,6 +23,8 @@ services:
     user: 1000:1000
     env_file:
     - .env.docker
+    ports:
+      - "9000:9000"
 
   nginx:
     container_name: nginx
@@ -36,6 +38,7 @@ services:
     env_file:
     - .env.docker
 
+
   mariadb:
     container_name: mariadb
     networks:
@@ -45,6 +48,8 @@ services:
     - db:/var/lib/mysql
     env_file:
     - .env.docker
+    ports:
+      - "3306:3306"
 
   redis:
     container_name: redis
