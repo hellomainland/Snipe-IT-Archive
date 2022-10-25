@@ -2,6 +2,8 @@ version: "3.9"
 services:
   cli:
     container_name: cli
+    networks:
+      - codespaces
     image: modamod/php7.4-cli
     volumes:
       - ..:/workspaces/snipe-it
@@ -13,6 +15,8 @@ services:
 
   fpm:
     container_name: fpm
+    networks:
+      - codespaces
     image: modamod/php7.4-fpm
     volumes:
       - ..:/workspaces/snipe-it
@@ -22,6 +26,8 @@ services:
 
   nginx:
     container_name: nginx
+    networks:
+      - codespaces
     build: nginx
     volumes:
       - ..:/workspaces/snipe-it
@@ -32,12 +38,22 @@ services:
 
   mariadb:
     container_name: mariadb
+    networks:
+      - codespaces
     build: mariadb
     volumes:
-    - ./.db:/var/lib/mysql
+    - db:/var/lib/mysql
     env_file:
     - .env.docker
 
   redis:
     container_name: redis
+    networks:
+      - codespaces
     image: redis:6.2-alpine
+
+
+volumes:
+  db: {}
+networks:
+  codepaces: {}
