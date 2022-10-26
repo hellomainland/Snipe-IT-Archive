@@ -1,4 +1,5 @@
 FROM nginx:1.21-alpine
-COPY default.conf /etc/nginx/conf.d/default.conf
+RUN mkdir -p /var/run/nginx
+COPY default.conf /etc/nginx/nginx.conf
 
 EXPOSE 8000
