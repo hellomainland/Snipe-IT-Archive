@@ -20,7 +20,6 @@ restore_database() {
 : ${DB_HOST="mariabdb"}
 : ${DB_PORT="3306"}
 : ${OUTPUT="/workspaces/snipe-it/.gp/data/dump.sql"}
-: ${CODESPACE_URL="https://${CODESPACE_NAME}-8000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"}
 mysqluserpw="$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16; echo)"
 wait-port $DB_HOST:$DB_PORT
 mysql -uroot -h$DB_HOST -p$MYSQL_ROOT_PASSWORD -P$DB_PORT -e  "CREATE DATABASE IF NOT EXISTS snipeit;GRANT ALL PRIVILEGES ON snipeit.* TO 'snipeit'@'mariadb'; FLUSH PRIVILEGES;"
@@ -29,8 +28,6 @@ if [[ ! $(mysql -uroot -h$DB_HOST -p$MYSQL_ROOT_PASSWORD -P$DB_PORT -e "SELECT 1
     restore_database "snipeit" $DB_PASSWORD "$DB_HOST" "$DB_PORT" "snipeit" $OUTPUT
 fi
 cp -f /workspaces/snipe-it/.devcontainer/.env.docker .env
-sed -i "s|APP_URL=.*$|APP_URL=${CODESPACE_URL}|g" .env
-sed -i "s|APP_URL=.*$|APP_URL=${CODESPACE_URL}|g" .devcontainer/.env.docker
 # sed -i "s|^\\(DB_PASSWORD=\\).*|\\1'${DB_PASSWORD}'|" .env
 composer install
 php artisan migrate --force

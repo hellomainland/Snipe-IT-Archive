@@ -1,7 +1,7 @@
 @extends('layouts/default')
 {{-- Page title --}}
 @section('title')
-Dash
+{{ trans('general.dashboard') }}
 @parent
 @stop
 
