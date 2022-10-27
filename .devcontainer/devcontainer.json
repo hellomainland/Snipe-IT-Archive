@@ -1,7 +1,7 @@
 {
     "name": "Snipe-it",
-    "service": "cli",
-    "remoteUser": "user",
+    "service": "nginx",
+    "remoteUser": "root",
     "shutdownAction": "stopCompose",
     "workspaceFolder": "/workspaces/snipe-it",
     "dockerComposeFile": "docker-compose.yaml",

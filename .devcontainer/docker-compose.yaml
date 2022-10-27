@@ -30,16 +30,16 @@ services:
     container_name: nginx
     networks:
       - codespaces
-    build: nginx
+    image: modamod/php-nginx:latest
     volumes:
       - ..:/workspaces/snipe-it
-    depends_on:
-      - fpm
+    # depends_on:
+    #   - fpm
     env_file:
     - .env.docker
     ports:
       - "8000:8000"
-
+    command: ["sleep", "infinity"]
 
   mariadb:
     container_name: mariadb
